@@ -1,31 +1,21 @@
 package io.alex538.testable.code.wiring.constructor;
 
-import io.alex538.testable.code.common.Dependency1;
-import io.alex538.testable.code.common.Dependency2;
+import io.alex538.testable.code.wiring.Dependency;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
 class ServiceTest {
 
-    private final Dependency1 dependency1 = mock(Dependency1.class);
+    private final Dependency dependency = mock(Dependency.class);
 
-    private final Dependency2 dependency2 = mock(Dependency2.class);
-
-    private final Service subject = new Service(dependency1, dependency2);
+    private final Service subject = new Service(dependency);
 
     @Test
     public void testAction1() {
         subject.action1();
 
-        verify(dependency1, times(1)).action();
-    }
-
-    @Test
-    public void testAction2() {
-        subject.action2();
-
-        verify(dependency2, times(1)).action();
+        verify(dependency, times(1)).action();
     }
 
 }

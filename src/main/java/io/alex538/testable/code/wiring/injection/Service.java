@@ -1,7 +1,6 @@
 package io.alex538.testable.code.wiring.injection;
 
-import io.alex538.testable.code.common.Dependency1;
-import io.alex538.testable.code.common.Dependency2;
+import io.alex538.testable.code.wiring.Dependency;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,10 +9,7 @@ import org.springframework.stereotype.Component;
 public class Service implements InitializingBean {
 
     @Autowired
-    private Dependency1 dependency1;
-
-    @Autowired
-    private Dependency2 dependency2;
+    private Dependency dependency;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -21,11 +17,7 @@ public class Service implements InitializingBean {
     }
 
     public void action1() {
-        dependency1.action();
-    }
-
-    public void action2() {
-        dependency2.action();
+        dependency.action();
     }
 
 }
