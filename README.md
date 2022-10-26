@@ -18,7 +18,7 @@ Here is our initial code snippet to be modified. The code snippet has one depend
 ```java
 public class Service {
 
-    Dependency1 dependency;
+    Dependency dependency;
 
     public void action() {
         dependency.action();
@@ -36,7 +36,7 @@ A sample above can be changed in something like this if we use for instance `Spr
 public class Service {
 
     @Autowired
-    private Dependency1 dependency;
+    private Dependency dependency;
 
     public void action() {
         dependency.action();
@@ -70,13 +70,13 @@ to a desired field, and we are able to write a unit test to verify our implement
 class ServiceTest {
 
     @Mock
-    private Dependency1 dependency;
+    private Dependency dependency;
 
     @InjectMocks
     private Service subject;
 
     @Test
-    public void testAction1() {
+    public void testAction() {
         subject.action();
 
         verify(dependency, times(1)).action();
@@ -98,9 +98,9 @@ Let's check out another way of providing dependencies - via class constructor. A
 @Component
 public class Service {
     
-    private final Dependency1 dependency;
+    private final Dependency dependency;
     
-    public Service(Dependency1 dependency) {
+    public Service(Dependency1dependency) {
         this.dependency = dependency;
     }
 
