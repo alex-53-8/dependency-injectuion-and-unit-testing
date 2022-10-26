@@ -1,6 +1,6 @@
 # Dependency injection and unit testing
 
-![](/home/alex538/sources/java/write-testable-code/resources/title.jpg)
+![](resources/title.jpg)
 
 Any developer, who works with object-oriented programming language and writes unit tests for implementations,
 encounters with a choice how to provide dependencies to a class. Some languages provide few choices,
