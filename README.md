@@ -60,8 +60,8 @@ Here are tasks for a unit test:
 - assign a dependency to a class field;
 - check if a dependency's method is actually called.
 
-Current implementation does not suppose direct assignment of dependencies to class fields, so we would DI to assign
-instance of a dependency to a private class field. It is possible to do with only `mockito` extension 
+Current implementation does not suppose direct assignment of dependencies to class fields, so we would use DI to assign
+instance of a dependency to a private class field. It is possible to do it with only `mockito` extension 
 or `mockito + Spring testing` extension. Each way has pros and cons, but as result a dependency will be assigned
 to a desired field, and we are able to write a unit test to verify our implementation.
 
@@ -88,7 +88,7 @@ class ServiceTest {
 I would highlight that it is quite smooth way: initialization and assignment happens invisibly. The only one thing - 
 we need a mediator to be able to mock and assign instances to class fields. We do not see and control how and 
 when mocking and assignment happen. This fact already makes such approach a bit foggy: looks like we "see" everything,
-but not clearly. Shapes in a fog can be tricky ;)
+but not clearly. Shapes in fog can be tricky ;)
 
 ## Assign dependencies to class field via a class constructor by DI framework
 
@@ -100,7 +100,7 @@ public class Service {
     
     private final Dependency dependency;
     
-    public Service(Dependency1dependency) {
+    public Service(Dependency dependency) {
         this.dependency = dependency;
     }
 
@@ -138,10 +138,11 @@ class ServiceTest {
 
 Since we pass dependencies to a class via constructor we can use following approach below. Test implementation does not
 require any special extension to run a test: dependency and test subject creation happens "manually". Such implementation
-has no invisible actions, everything is controlled by us. Implementation looks in different way, dependency creation is seen,
-passing dependencies is seen also, code is a bit longer than a previous implementation. Definitely it is more obvious what happens here.
+has no invisible actions, everything is controlled by us. Implementation looks in different way, dependency creation is visible,
+passing dependencies is visible also, code is a bit longer than a previous implementation. Definitely it is more obvious what happens here.
 
 ## Why `final` matters here?
+
 A keyword `final` applied to a class field indicated immutability. If a class field has no such keyword there is a possibility
 to modify value of a class field. That means in some specific cases our class technically can behave differently, and
 it is not good at all - it is a way to produce problems in production rather than favor. Since a class looses immutability 
